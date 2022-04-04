@@ -10,7 +10,9 @@ const AppRoute = () => {
         <NavigationContainer>
             {/* Conditional stack navigator rendering based on isloggedIn state */}
             {
-                isLoggedIn ? <AppNavigator /> : <AuthNavigator />
+             //   isLoggedIn ? <AppNavigator /> : <AuthNavigator />
+             <AppNavigator /> // A supprimer après test
+
             }
         </NavigationContainer>
     )

@@ -10,19 +10,24 @@ import SondagesScreen from '../screens/SondagesScreen';
 import MembresScreen from '../screens/Membres/MembresScreen';
 import CanauxScreen from '../screens/CanauxScreen';
 import CreerSondageScreen from  '../screens/CreerSondageScreen';
+import GrpEFGsScreen from '../screens/grpefgs/GrpEFGsScreen';
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => { 
+
     return (
+
         <Stack.Navigator
-            initialRouteName='Home'
+        //    initialRouteName='Home'
+            initialRouteName='GrpEFGsScreen'
             screenOptions={{
                 headerStyle: {
                     backgroundColor: '#0068bd',
                 },
                 headerTintColor: 'white',
             }}>
+
             <Stack.Screen
                 name='LoginScreen' component={LoginScreen}
                 options={{ title: "Login", }}
@@ -64,6 +69,11 @@ const AppNavigator = () => {
                 name='EFGDetailScreen'
                 options={{ title: 'Exercice' }}
                 component={EFGDetailScreen}
+            />
+            <Stack.Screen
+                name='GrpEFGsScreen'
+                options={{ title: 'Gestion groupes exercice' }} 
+                component={GrpEFGsScreen}
             />
 
             <Stack.Screen

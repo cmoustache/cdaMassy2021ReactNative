@@ -20,7 +20,7 @@ function getHeaders(){
 }
 
 const initialState = {
-  isLoggedIn: false, //a remettre à false
+  isLoggedIn: false,
   //Async operation state:
   loading: false,
   //Async operation result:
@@ -72,7 +72,7 @@ const initialState = {
       idCreateur: 2,
     },
   ],
-  mbrGrpEFGs: [{"idPersonne":3,"idCreateur":3,"idEfg":1,
+  mbrgrpefgs: [{"idPersonne":3,"idCreateur":3,"idEfg":1,
                 "nom":"RiviÃ¨re","prenom":"Manuel",
                 "intitule":"TP dÃ©finir objectif","idCanal":1,"idCreateurCanalExo":1,"groupes":"2,3" },
                 {"idPersonne":4,"idCreateur":4,"idEfg":1,

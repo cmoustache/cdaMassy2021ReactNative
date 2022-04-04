@@ -47,6 +47,10 @@ function HomeScreen(props) {
 				<Text style={styles.libelle}>Créer un EFG</Text>
 			</TouchableOpacity>
 
+			<TouchableOpacity onPress={() => navigation.navigate('GrpEFGsScreen', {})} style={styles.button}>
+				<Text style={styles.libelle}>Afficher groupes du formateur</Text>
+			</TouchableOpacity>
+
 
 			<TouchableOpacity onPress={onResetDatabasePress} style={styles.button}>
 				<Text style={styles.libelle}>Reset Database</Text>
