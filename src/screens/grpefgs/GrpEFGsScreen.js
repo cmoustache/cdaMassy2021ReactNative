@@ -1,13 +1,14 @@
 import React from 'react'
 import { View, Text, FlatList  } from "react-native"
-import MbrGrpEFGs from "../../components/grpefgs/MbrGrpEFGs"
+import GrpEFGs from "../../components/grpefgs/GrpEFGs"
+//import MbrGrpEFGs from "../../components/grpefgs/MbrGrpEFGs"
 
 const GrpEFGsScreen = () => {
 
     return (
         <View>
             <Text> MEMBRES DE L'EXERCICE</Text>
-            <MbrGrpEFGs />
+            <GrpEFGs />
             <Text> ADD </Text>
         </View>
 

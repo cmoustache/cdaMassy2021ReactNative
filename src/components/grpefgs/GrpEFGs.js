@@ -1,80 +1,77 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  SectionList,
-  StatusBar,
-} from "react-native";
+import{ StatusBar } from 'expo-status-bar'
+import Constants from 'expo-constants'
+import { View, Text, SectionList, StyleSheet, SafeAreaView } from 'react-native'
 import { useSelector } from "react-redux";
-import MbrGrpEFG from "./MbrGrpEFG";
+import MbrGrpEFG from "./MbrGrpEFG"
 
-const MbrGrpEFGs = () => {
-  const mbrGrpEFGs = useSelector((state) => state.reducer.mbrGrpEFGs);
+const GrpEFGs = () => {
 
-  // const groupBy = (array, key) => {
-  //     // Return the end result
-  //     return array.reduce((result, currentValue) => {
-  //         // If an array already present for key, push it to the array. Else create an array and push the object
-  //         (result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
-  //     // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
-  //     return result;
-  //   }, {}); // empty object is the initial value for result object
-  // };
-  // Group by idCreateur (c'est à dire par Groupe Exercice)
-  //   const mbrGrpEFGsByGroups = groupBy(mbrGrpEFGs, 'idCreateur');
+    const mbrGrpEFGs = useSelector((state) => state.reducer.mbrGrpEFGs); 
 
-  const DATA = mbrGrpEFGs.reduce((accum, current) => {
-    let groupeCreateur = accum.find((x) => x.idCreateur === current.idCreateur);
-    if (!groupeCreateur) {
-      groupeCreateur = { idCreateur: current.idCreateur, data: [] };
-      accum.push(groupeCreateur);
-    }
-    groupeCreateur.data.push(current);
-    return accum;
+    // const mbrGrpEFGsObj = mbrGrpEFGs.reduce((accum, current) => {
+    //   let groupeCreateur = accum.find((x) => x.idCreateur === current.idCreateur);
+    //   if (!groupeCreateur) {
+    //     groupeCreateur = { idCreateur: current.idCreateur, data: [] };
+    //     accum.push(groupeCreateur);
+    //   }
+    //   groupeCreateur.data.push(current);
+    //   return accum;
+    // }, []);
+
+    // fetch('https://cdamassy2021/Time=21')
+    // .then(r => r.json())
+    // .then(r => {
+
+    const mbrGrpEFGsObj = mbrGrpEFGs.reduce((r,s) => {
+    r.push({idCreateur: s.idCreateur,  data: s.nom});
+    return r;
   }, []);
 
-  console.log("%j", DATA);
+//   this.setState({ movieData });
+// });
+  
+    //console.log("%j", mbrGrpEFGsObj);
+  //console.log(JSON.stringify(mbrGrpEFGsObj))
 
-  const Item = ({ idCreateur }) => (
-    <View style={styles.item}>
-      <Text style={styles.idCreateur}>{idCreateur}</Text>
-    </View>
-  );
+    return (
+     <SafeAreaView style={styles.container}>
+        <SectionList
+            sections= {mbrGrpEFGsObj}
+            keyExtractor={ (item, index) => (item.idPersonne + index)}
+            renderItem = {({ item }) => ( 
+                <View style = {styles.container}>
+                    <GrpEFG mbrGrpEFG={item} />
+                </View>
+            )}
+            renderSectionHeader= {({ section }) => (
+              <View style={{ padding: 8, backgroundColor: '#4fc3c8' }}>
+                <Text style={{ color: 'white' }}>{section.key.toUpperCase()}</Text>
+              </View>
+            )}
+            stickySectionHeadersEnabled
+        />
+    </SafeAreaView>
+    )
+}
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            paddingTop: StatusBar.currentHeight,
+            marginHorizontal: 16
+        },
+        item: {
+            backgroundColor: "#f9c2ff",
+            padding: 20,
+            marginVertical: 8
+        },
+        header: {
+            fontSize: 32,
+            backgroundColor: "#fff"
+        },
+        footer: {
+            fontSize: 24
+        }
+    });
 
-  const App = () => (
-    //<SafeAreaView style={styles.container}>
-    <SectionList
-      sections={DATA}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <Item idCreateur={item} />}
-      renderSectionHeader={({ section: { idCreateur } }) => (
-        <Text style={styles.header}>{idCreateur}</Text>
-      )}
-    />
-    //</SafeAreaView>
-  );
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: StatusBar.currentHeight,
-      marginHorizontal: 16,
-    },
-    item: {
-      backgroundColor: "#f9c2ff",
-      padding: 20,
-      marginVertical: 8,
-    },
-    header: {
-      fontSize: 32,
-      backgroundColor: "#fff",
-    },
-    idCreateur: {
-      fontSize: 24,
-    },
-  });
-};
-
-export default GrpEFGs;
+export default GrpEFGs
